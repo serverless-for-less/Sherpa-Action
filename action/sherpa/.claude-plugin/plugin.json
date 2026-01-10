@@ -1,0 +1,8 @@
+{
+    "name": "Sherpa",
+    "description": "Turn any cloud into a Platform-as-a-Service using human language",
+    "version": "1.0.0",
+    "author": {
+        "name": "Sherpa.sh"
+    }
+}
