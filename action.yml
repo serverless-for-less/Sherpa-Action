@@ -18,26 +18,10 @@ inputs:
     description: 'GitHub token for repo access (defaults to github.token)'
     required: false
     default: ${{ github.token }}
-  allowed_tools:
-    description: 'Comma-separated list of allowed Claude Code tools'
-    required: false
-    default: ''
-  disallowed_tools:
-    description: 'Comma-separated list of disallowed Claude Code tools'
-    required: false
-    default: ''
   max_turns:
     description: 'Maximum number of agentic turns'
     required: false
-    default: ''
-  timeout_minutes:
-    description: 'Timeout for Claude Code execution in minutes'
-    required: false
-    default: '30'
-  mode:
-    description: 'Mode for claude-code-action (direct for push events, default for PR events)'
-    required: false
-    default: 'direct'
+    default: '100'
 
 outputs:
   result:
@@ -71,21 +55,32 @@ runs:
           exit 1
         fi
 
+    - name: Install Claude Code CLI
+      shell: bash
+      run: npm install -g @anthropic-ai/claude-code
+
     - name: Run Claude Code with Sherpa
       id: claude
-      uses: anthropics/claude-code-action@v1
-      with:
-        anthropic_api_key: ${{ inputs.anthropic_api_key }}
-        mode: ${{ inputs.mode }}
-        direct_prompt: |
-          /Sherpa/deploy ${{ inputs.prompt }}
-        allowed_tools: ${{ inputs.allowed_tools }}
-        disallowed_tools: ${{ inputs.disallowed_tools }}
-        max_turns: ${{ inputs.max_turns }}
-        timeout_minutes: ${{ inputs.timeout_minutes }}
-        claude_args: |
-          --plugin-dir ${{ github.workspace }}/.sherpa-plugin
+      shell: bash
+      run: |
+        # Run claude and capture output
+        OUTPUT=$(claude \
+          --dangerously-skip-permissions \
+          --print \
+          --plugin-dir "${{ github.workspace }}/.sherpa-plugin" \
+          --max-turns "${{ inputs.max_turns }}" \
+          --prompt "/Sherpa/deploy ${{ inputs.prompt }}" 2>&1) || true
+
+        echo "$OUTPUT"
+
+        # Set output using multiline delimiter
+        {
+          echo "result<<EOF"
+          echo "$OUTPUT"
+          echo "EOF"
+        } >> $GITHUB_OUTPUT
       env:
+        ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
         GITHUB_TOKEN: ${{ inputs.github_token }}
 
     - name: Commit Sherpa changes
