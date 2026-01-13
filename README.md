@@ -47,9 +47,11 @@ jobs:
       - uses: sherpa-sh/sherpa-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_api_key: ${{ secrets.}}
+
           prompt: "Deploy my nextjs app to cloudflare"
         env:
-            CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+          CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
 ```
 
 ### Local Development
