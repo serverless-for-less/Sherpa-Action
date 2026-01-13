@@ -21,5 +21,15 @@ Step 3: Deployment:
 1. Read the files `.sherpa.sh/build-info.md` and `.sherpa.sh/deployment-plan`.
 2. Execute the deployment plan by uploading and running the application code and static assets based on the deployment plan
 
-Step 4: Document
-4. Write the commands that worked to build and deploy into `.sherpa.sh/executionlog.md` (overwrite whats existing) for later use so you can repeat the process. IMPORTANT! NEVER write secrets, credentials, passwords, or API keys into this document. Refer to them by all UPPERCASE variables.
+Step 4: Document (REQUIRED - DO NOT SKIP)
+**You MUST complete this step before finishing.**
+
+1. Write the commands that worked to build and deploy into `.sherpa.sh/executionlog.md` (overwrite what's existing) for later use so you can repeat the process. Include:
+   - Build commands used
+   - Deployment commands and API calls made
+   - Any configuration changes applied
+   - Timestamp of this deployment
+
+2. Verify `.sherpa.sh/infrastructure.md` exists and is up to date (created by `/Sherpa/create-infrastructure`).
+
+IMPORTANT! NEVER write secrets, credentials, passwords, or API keys into these documents. Refer to them by UPPERCASE variable names (e.g., $CLOUDFLARE_API_TOKEN).
