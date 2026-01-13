@@ -1,6 +1,6 @@
-name: 'Sherpa'
+name: 'Sherpa.sh'
 description: 'AI that ships your code. Deploy to any cloud with plain English.'
-author: 'sherpa.sh'
+author: 'Sherpa.sh'
 
 branding:
   icon: 'upload-cloud'
