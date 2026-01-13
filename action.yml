@@ -69,7 +69,7 @@ runs:
           --print \
           --plugin-dir "${{ github.workspace }}/.sherpa-plugin" \
           --max-turns "${{ inputs.max_turns }}" \
-          --prompt "/Sherpa/deploy ${{ inputs.prompt }}" 2>&1) || true
+          "/Sherpa/deploy ${{ inputs.prompt }}" 2>&1) || true
 
         echo "$OUTPUT"
 
