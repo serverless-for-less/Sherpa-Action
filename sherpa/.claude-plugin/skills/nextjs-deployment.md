@@ -3,7 +3,11 @@ name: Nextjs Deployment
 description: Steps required to build and deploy a Nextjs project into a cloud provider.
 ---
 
-When building and deploying Nextjs, never use open-next or cloudflare-next. You want to deploy
+When building and deploying Nextjs, never use the following:
+- open-next
+- cloudflare-next
+
+You want to deploy
 the actual application code that gets output into the .next folder.
 Follow these steps.
 

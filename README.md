@@ -225,6 +225,10 @@ AWS_ACCESS_KEY_ID=...
 AWS_SECRET_ACCESS_KEY=...
 ```
 
+### Digital Ocean
+
+Generate a personal access token at [Digital Ocean API Settings](https://cloud.digitalocean.com/account/api/tokens). Add it as `DIGITALOCEAN_API_TOKEN` in your repository secrets.
+
 ## Features
 
 Describe your infrastructure needs in plain English. Here are some examples:

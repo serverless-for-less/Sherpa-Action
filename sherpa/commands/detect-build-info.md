@@ -12,3 +12,4 @@ Detect the language, build commands, framework, and other info necessary to buil
 4. ALWAYS read the code base to determine the appropriate package manager to use (npm, pnpm, yarn, bun, deno, etc)
 5. Write the output to the file `.sherpa.sh/build-info.md`. Ensure .sherpa.sh is in the root of the repo next to .git folder. Never write anything explicitly referencing netlify into the config. Always include the framework, build commands and the folder where the build command must be run from.
 6. Summarize to the user how this project will get build with the `/Sherpa/build` command. 
+7. Continue with the original command, if there is one.

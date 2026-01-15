@@ -19,7 +19,7 @@ Step 2: Build
 
 Step 3: Deployment:
 1. Read the files `.sherpa.sh/build-info.md` and `.sherpa.sh/deployment-plan`.
-2. Execute the deployment plan by uploading and running the application code and static assets based on the deployment plan
+2. Execute the deployment plan by uploading and running the application code and static assets based on the deployment plan. **Always use the provider skill. Always use the MCP server. Never use Terraform.**
 
 Step 4: Document (REQUIRED - DO NOT SKIP)
 **You MUST complete this step before finishing.**
