@@ -206,6 +206,8 @@ permissions:
 ```
 ### Passing Secrets
 
+#### Github Action
+
 To give Sherpa access to your cloud provider credentials and other secrets, you need to:
 
 1. **Add secrets to your repository** - See [GitHub's documentation on using secrets](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets) for how to create and manage repository secrets.
@@ -231,7 +233,7 @@ To give Sherpa access to your cloud provider credentials and other secrets, you 
     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 ```
 
-Any environment variables you pass will be available to Sherpa.sh during execution.
+Any environment variables you pass will only be available to Sherpa.sh during workflow execution. Otherwise they are encrypted at rest inside of Github's secret management system.
 
 #### Using a Secret File
 
@@ -278,9 +280,9 @@ Sherpa will automatically configure the correct environment variables and `NODE_
 
 Create an API token at [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens) with the appropriate permissions for your deployment (e.g., Workers, Pages, DNS). Add it as `CLOUDFLARE_API_TOKEN` in your repository secrets.
 
-### AWS
+#### AWS
 
-Create an IAM user with programmatic access and the necessary permissions for your deployment. Add these secrets to your repository:
+Create an IAM user with programmatic access and the necessary permissions for your deployment. Add these secrets:
 
 ```
 AWS_ACCESS_KEY_ID=...
