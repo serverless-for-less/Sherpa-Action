@@ -10,16 +10,30 @@ Sherpa's AI automatically creates and configures your infrastructure: servers, D
 
 ## Why Sherpa?
 
-- **Any Cloud** - AWS, Google Cloud, Digital Ocean, Hetzner, Linode, Vultr, Akamai, Cloudflare. Change anytime.
-- **Any Framework** - Next.js, React, SvelteKit, Nuxt.js, Remix, Astro, Django, Laravel, Docker, and more.
-- **Plain English** - No YAML configs, no Terraform, no DevOps expertise required
-- **Open Source** - Community-driven and transparent
+Infrastructure should be invisible. Developers want to ship products, not configure YAML files. Sherpa is the open-source intelligence layer that makes deployment disappear—in the best possible way.
+
+**Any Cloud** — AWS, Google Cloud, Hetzner, Akamai, Cloudflare, your own servers. Switch anytime. No lock-in, ever.
+**Any Framework** — Next.js, SvelteKit, Nuxt, Remix, Astro, Django, Laravel, Docker, and more.
+**Plain English** — No Terraform. No DevOps expertise. Describe what you want, Sherpa figures out how.
+**Open Source** — Fully transparent, auditable, and community-driven. See exactly what runs in your infrastructure.
+
+We believe the future of deployment is AI that reads your code, understands your intent, and configures optimal infrastructure automatically. No dashboards to learn. No vendor lock-in to escape. Just code that ships.
+
+### Where we are going
+
+We're building toward infrastructure that manages itself entirely — AI that reads your code, picks optimal providers automatically, reroutes traffic when outages hit, and continuously optimizes costs across every cloud.
+
+The end state? You push code and it's live, globally distributed, auto-scaling, always improving. Infrastructure becomes invisible.
+
+And because it's open source, you can see exactly how it works, contribute to the roadmap, and never get locked in to a vendor.
 
 ## Usage
 
 ### With Github Actions
 
 Run Sherpa on repo pushes, deploys, PRs, and more.  Integrate into your existing Github Workflows.  Get the Vercel/Netlify/Heroku experience on your own terms.
+
+Create a file at `.github/workflows/deploy.yml` in your repository:
 
 ```yaml
 name: Push to deploy
@@ -144,6 +158,7 @@ jobs:
         env:
           HETZNER_API_TOKEN: ${{ secrets.HETZNER_API_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_PUBLIC_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
           ENV_FILE: ${{ secrets.ENV_FILE }}
@@ -231,6 +246,7 @@ To give Sherpa access to your cloud provider credentials and other secrets, you 
 
     # Cloudflare credentials
     CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 ```
 
 Any environment variables you pass will only be available to Sherpa.sh during workflow execution. Otherwise they are encrypted at rest inside of Github's secret management system.
@@ -278,7 +294,14 @@ Sherpa will automatically configure the correct environment variables and `NODE_
 
 #### Cloudflare
 
-Create an API token at [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens) with the appropriate permissions for your deployment (e.g., Workers, Pages, DNS). Add it as `CLOUDFLARE_API_TOKEN` in your repository secrets.
+Create an API token at [Cloudflare Dashboard](https://dash.cloudflare.com/profile/api-tokens) with the appropriate permissions for your deployment (e.g., Workers, Pages, DNS). Add these secrets:
+
+```
+CLOUDFLARE_API_TOKEN=...
+CLOUDFLARE_ACCOUNT_ID=...
+```
+
+You can find your Account ID in the Cloudflare Dashboard under any domain's Overview page (right sidebar) or at the top of the Workers & Pages section.
 
 #### AWS
 
