@@ -388,6 +388,16 @@ Then add these as repository secrets in GitHub (Settings → Secrets → Actions
 
 Want to contribute or request a feature? [Open an issue](https://github.com/sherpa-sh/sherpa-action/issues) or [join the community](https://discord.com/invite/Pn7N2Wwbjy).
 
+### Contributing without an API key
+
+Running the GitHub Action requires an Anthropic API key (`anthropic_api_key` / `ANTHROPIC_API_KEY`). If you don't have one, you can still help by:
+- Improving docs and workflow examples
+- Reporting bugs with redacted logs
+- Adding tests / CI checks / linters
+- Proposing a dry-run / plan-only mode for safer onboarding
+
+ [Open an issue](https://github.com/sherpa-sh/sherpa-action/issues) or [join the community](https://discord.com/invite/Pn7N2Wwbjy).
+
 ### Local Development
 
 To use a local copy of the action (for development or customization):
