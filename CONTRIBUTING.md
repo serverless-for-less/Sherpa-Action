@@ -1,18 +1,26 @@
-# Contributing to Sherpa-Action
+# Contributing
 
-Thanks for helping!
+Thanks for helping improve Sherpa-Action!
 
-## Quick ways to contribute (no API keys needed)
-- Improve documentation and examples
-- Report bugs with minimal repro steps (please redact secrets)
-- Add CI checks, linting, tests
-- Suggest a dry-run / plan-only mode for safer onboarding
+## Quick ways to help (no API key required)
+The GitHub Action requires an Anthropic API key (`anthropic_api_key` / `ANTHROPIC_API_KEY`) to actually run.
+If you don't have one, you can still contribute by:
 
-## Development
-1. Fork the repo and create a branch
-2. Make small, focused changes
-3. Open a PR with a clear description
+- Improving documentation and examples
+- Reporting bugs (please redact secrets/tokens)
+- Adding tests / CI checks / linting
+- UX improvements: clearer errors, better logs, safer defaults
+- Proposing a “dry-run / plan-only” mode so newcomers can validate setup without paid keys
+
+## Reporting issues
+- Include your OS + GitHub Actions runner (if applicable)
+- Paste logs after removing secrets
+- Explain expected vs actual behavior
+
+## Pull requests
+- Keep PRs small and focused (one topic per PR)
+- Prefer docs + tests for behavior changes
+- Explain the “why” in the PR description
 
 ## Security
-- Never post provider credentials, SSH keys, or tokens in issues/PRs.
-- Prefer redacted logs and minimal reproducible examples.
+Never commit secrets. Use GitHub repository secrets for credentials.
