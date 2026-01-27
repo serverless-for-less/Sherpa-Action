@@ -63,6 +63,15 @@ runs:
       id: claude
       shell: bash
       run: |
+        # Parse and export ALL env vars from the shared env context
+        if [ "$ENV_VARS_JSON" != "{}" ] && [ -n "$ENV_VARS_JSON" ]; then
+          eval "$(echo "$ENV_VARS_JSON" | jq -r 'to_entries | .[] | "export \(.key)=\(.value | @sh)"')"
+        fi
+
+        # Override with inputs (these take precedence)
+        export ANTHROPIC_API_KEY="${{ inputs.anthropic_api_key }}"
+        export GITHUB_TOKEN="${{ inputs.github_token }}"
+
         # Run claude and capture output
         OUTPUT=$(claude \
           --dangerously-skip-permissions \
@@ -80,8 +89,7 @@ runs:
           echo "EOF"
         } >> $GITHUB_OUTPUT
       env:
-        ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
-        GITHUB_TOKEN: ${{ inputs.github_token }}
+        ENV_VARS_JSON: ${{ toJSON(env) }}
 
     - name: Commit Sherpa changes
       id: commit-sherpa
